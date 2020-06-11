@@ -86,7 +86,7 @@ divs y los elementos de la página se muestren correctamente colocados.
     }
 
     h4, .h4 {
-        font-size: 1.5rem;
+        font-size: 4.5rem;
     }
 
     h5, .h5 {
@@ -178,6 +178,91 @@ divs y los elementos de la página se muestren correctamente colocados.
         height: 200px;
     }
 
+    .contenido{
+        display: none;
+        width: 100%;
+        padding-right: 5%;
+        padding-left: 5%;
+        padding-top: 2rem;
+    }
+
+    .vuelo{
+        justify-content: space-between;
+        display: inline-flex;
+        margin: 1rem;
+        width: 100%;
+        padding-right: 2rem;
+        font-size: 2.5rem;
+    }
+
+    .precio{
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-right: 3rem;
+        text-align: center;
+        font-size: 4rem;
+    }
+
+    .ubicaciones{
+        display: grid;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        line-height: 3rem;
+        width: 40%;
+    }
+
+    .texto-hora{
+        font-weight: 700;
+        display: flex;
+        line-height: 3rem;
+        align-items: center;
+    }
+
+    .texto-vuelo{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-aerolinea-vuelo{
+        height: 12%;
+        display: flex;
+    }
+
+    .texto-codigo-vuelo{
+        font-weight: 300;
+        font-size: 2.4rem;
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .aerolinea-codigo-vuelo{
+        padding: 0.5rem;
+        display: grid;
+        align-content: space-evenly;
+    }
+
+    .texto-duracion{
+        font-size: 2.5rem;
+        font-weight: 300;
+        text-align: center;
+        width: 2rem;
+        display: grid;
+        align-items: baseline;
+        padding-right: 3rem;
+    }
+
+    .icono-viaje{
+
+    }
+
+    .grupo-horas-ubicaciones{
+        display: flex;
+    }
+
 }
 
 @media screen and (min-device-width: 1025px){
@@ -258,6 +343,68 @@ divs y los elementos de la página se muestren correctamente colocados.
         height: 120px;
     }
 
+    .contenido{
+        display: none;
+        width: 100%;
+        padding-right: 20%;
+        padding-left: 20%;
+        padding-top: 2rem;
+    }
+
+    .vuelo{
+        display: flex;
+        margin: 1rem;
+        width: 100%;
+        padding-right: 2rem;
+    }
+
+    .precio{
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-right: 3rem;
+        padding-left: 3rem;
+        text-align: center;
+    }
+
+    .ubicaciones{
+        display: grid;
+        padding-right: 2rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .texto-hora{
+        font-weight: 700;
+        display: inline-flex;
+    }
+
+    .logo-aerolinea-vuelo{
+        height: 25px;
+    }
+
+    .texto-codigo-vuelo{
+        font-weight: 300;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .texto-duracion{
+        font-size: 0.7rem;
+        font-weight: 300;
+        text-align: center;
+        width: 2rem;
+        display: grid;
+        align-items: baseline;
+        padding-right: 3rem;
+    }
+
+    .grupo-horas-ubicaciones{
+        display: flex;
+        justify-content: space-between;
+    }
+
 }
 
 
@@ -313,14 +460,6 @@ divs y los elementos de la página se muestren correctamente colocados.
 
 /* Clases de la zona del contenido. Donde se muestran los vuelos */
 
-.contenido{
-    display: none;
-    width: 100%;
-    padding-right: 20%;
-    padding-left: 20%;
-    padding-top: 2rem;
-}
-
 .zona-boton-vuelos{
     display: none;
     justify-content: space-between;
@@ -336,12 +475,6 @@ divs y los elementos de la página se muestren correctamente colocados.
     justify-content: space-between;
 }
 
-.vuelo{
-    display: flex;
-    margin: 1rem;
-    width: 100%;
-    padding-right: 2rem;
-}
 
 .horas{
     display: grid;
@@ -361,30 +494,11 @@ divs y los elementos de la página se muestren correctamente colocados.
     width: 100%;
 }
 
-.ubicaciones{
-    display: grid;
-    padding-right: 2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-}
-
-.grupo-horas-ubicaciones{
-    display: flex;
-    justify-content: space-between;
-}
 
 .duracion-icono{
     display: flex;
     padding: 1rem;
     align-items: center;
-}
-
-.precio{
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-right: 3rem;
-    padding-left: 3rem;
-    text-align: center;
 }
 
 .precio-sin-descuento{
@@ -398,28 +512,9 @@ divs y los elementos de la página se muestren correctamente colocados.
     width: 100%;
 }
 
-.texto-duracion{
-    font-size: 0.7rem;
-    font-weight: 300;
-    text-align: center;
-    width: 2rem;
-    display: grid;
-    align-items: baseline;
-    padding-right: 3rem;
-}
 
-.texto-hora{
-    font-weight: 700;
-    display: inline-flex;
-}
 
-.texto-codigo-vuelo{
-    font-weight: 300;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: space-around;
 
-}
 
 .aerolinea{
     cursor: pointer;
