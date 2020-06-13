@@ -15,12 +15,14 @@ public class Vuelo{
     private int duracion;  // en minutos
     private int precio;  // euros
     private String aerolinea; // codigo de la aerolinea
-    private String origen;  // nombre del aeropuerto
-    private String destino;  // nombre del aeropuerto
+    @ManyToOne
+    private Aeropuerto origen;  // nombre del aeropuerto
+    @ManyToOne
+    private Aeropuerto destino;  // nombre del aeropuerto
 
     public Vuelo(){}
 
-    public Vuelo(String codigo, Date salida, int duracion, int precio, String aerolinea, String origen, String destino) {
+    public Vuelo(String codigo, Date salida, int duracion, int precio, String aerolinea, Aeropuerto origen, Aeropuerto destino) {
         this.codigo = codigo;
         this.salida = salida;
         // Se usa la clase Calendar para calcular el Date llegada a partir de la duracion
@@ -83,19 +85,19 @@ public class Vuelo{
         this.aerolinea = aerolinea;
     }
 
-    public String getOrigen() {
+    public Aeropuerto getOrigen() {
         return origen;
     }
 
-    public void setOrigen(String origen) {
+    public void setOrigen(Aeropuerto origen) {
         this.origen = origen;
     }
 
-    public String getDestino() {
+    public Aeropuerto getDestino() {
         return destino;
     }
 
-    public void setDestino(String destino) {
+    public void setDestino(Aeropuerto destino) {
         this.destino = destino;
     }
 

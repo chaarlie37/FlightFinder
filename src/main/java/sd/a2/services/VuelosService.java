@@ -1,6 +1,7 @@
 package sd.a2.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import sd.a2.model.Aeropuerto;
 import sd.a2.model.Vuelo;
 import sd.a2.repositories.VueloRepository;
 import java.util.Date;
@@ -14,6 +15,9 @@ public class VuelosService {
     // Repositorio de vuelos
     private VueloRepository vueloRepository;
 
+    @Autowired
+    private AeropuertoService aeropuertoService;
+
     public VuelosService(){
 
     }
@@ -24,7 +28,11 @@ public class VuelosService {
         // Como DATE incluye la hora, hay que consultar los vuelos entre dos "fechas",
         // la fecha dada a las 00:00 y la fecha dada a las 23:59 (es decir, las 24h que dura el dia)
         Date finDia = new Date(fecha.getTime() + 24 * 3600 * 1000 - 1);
-        return vueloRepository.findBySalidaBetweenAndOrigenAndDestino(fecha, finDia, origen, destino);
+        System.out.println(origen);
+        System.out.println(destino);
+        Aeropuerto or = aeropuertoService.getAeropuerto(origen);
+        Aeropuerto des = aeropuertoService.getAeropuerto(destino);
+        return vueloRepository.findBySalidaBetweenAndOrigenAndDestino(fecha, finDia, or, des);
     }
 
     // Devolver todos los vuelos

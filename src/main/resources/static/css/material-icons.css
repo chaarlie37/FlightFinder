@@ -30,8 +30,18 @@
     vertical-align: middle;
 }
 
-.material-icons.icono-info{
-    font-size: 2rem;
+@media screen and (max-device-width: 1024px){
+    .material-icons.icono-info{
+        font-size: 3rem;
+    }
 }
+
+@media screen and (min-device-width: 1025px){
+    .material-icons.icono-info{
+        font-size: 2rem;
+    }
+}
+
+
 
 

@@ -15,6 +15,10 @@ public class AeropuertoService {
 
     public AeropuertoService(){}
 
+    public Aeropuerto getAeropuerto(String nombre){
+        return aeropuertoRepository.findByNombre(nombre);
+    }
+
     // Devolver todos los aeropuertos
     public List<Aeropuerto> getAeropuertos(){return aeropuertoRepository.findAll();}
 

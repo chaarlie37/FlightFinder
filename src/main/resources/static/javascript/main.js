@@ -202,8 +202,8 @@ $(function () {
                                 $.each(respuesta, function (i, item) {
                                     var codigo_aerolinea = item.aerolinea;
                                     var codigo_vuelo = item.codigo;
-                                    var aeropuerto_origen = item.origen;
-                                    var aeropuerto_destino = item.destino;
+                                    var aeropuerto_origen = item.origen.codigo;
+                                    var aeropuerto_destino = item.destino.codigo;
                                     var duracion = formatear_duracion(item.duracion);
                                     var hora_salida = formatear_hora(item.salida);
                                     var hora_llegada = formatear_hora(item.llegada);
@@ -214,12 +214,12 @@ $(function () {
                                         "            <div class=\"pareja\">\n" +
                                         "                <div class=\"vuelo\">\n" +
                                         "                    <div class=\"aerolinea-codigo-vuelo\">\n" +
-                                        "                        <img class=\"aerolinea\" id=\"" + codigo_aerolinea + "\" src=\"/images/" + codigo_aerolinea + ".png\" title=\"Ver detalles de aerolinea\" height=\"30px\">\n" +
+                                        "                        <img class=\"aerolinea logo-aerolinea-vuelo\" id=\"" + codigo_aerolinea + "\" src=\"/images/" + codigo_aerolinea + ".png\" title=\"Ver detalles de aerolinea\">\n" +
                                         "                        <div class=\"texto-codigo-vuelo\">" + codigo_vuelo + "</div>\n" +
                                         "                    </div>\n" +
                                         "                    <div class=\"duracion-icono\">\n" +
                                         "                        <div class=\"texto-duracion\">" + duracion + "</div>\n" +
-                                        "                        <img src=\"/images/icono-viaje.png\" height=\"45px\">\n" +
+                                        "                        <img src=\"/images/icono-viaje.png\" class='icono-viaje'>\n" +
                                         "                    </div>\n" +
                                         "                    <div class=\"detalles-vuelo\">\n" +
                                         "                        <div class=\"grupo-horas-ubicaciones\">\n" +
@@ -289,7 +289,7 @@ $(function () {
     $.getJSON('/aeropuertos/', function (respuesta) {
         var lista = [];
         $.each(respuesta, function (i, item) {
-            lista.push(item.nombre);
+            lista.push(item.nombre + " (" + item.codigo + ")");
         })
         guardar_aeropuertos(lista);
     });
@@ -383,7 +383,7 @@ $(function () {
                 cabecera_vuelos.append('<div class="cabecera-vuelos">\n' +
                     '    <div class="origen-destino">\n' +
                     '        <div class="origen-fecha-cabecera">\n' +
-                    '            <h5 class="texto-cabecera">' + vuelos_ida[0].origen + '</h5>\n' +
+                    '            <h5 class="texto-cabecera">' + vuelos_ida[0].origen.nombre + '</h5>\n' +
                     '            <h5 class="texto-cabecera">' + formatear_fecha(vuelos_ida[0].salida) + '</h5>\n' +
                     '        </div>\n' +
                     '        <div class="iconos-cabecera">\n' +
@@ -391,7 +391,7 @@ $(function () {
                     '            <span class="texto-cabecera icono-info material-icons">today</span>\n' +
                     '        </div>\n' +
                     '        <div class="destino-fecha-cabecera">\n' +
-                    '            <h5 class="texto-cabecera">' + vuelos_vuelta[0].origen + '</h5>\n' +
+                    '            <h5 class="texto-cabecera">' + vuelos_vuelta[0].origen.nombre + '</h5>\n' +
                     '            <h5 class="texto-cabecera">' + formatear_fecha(vuelos_vuelta[0].salida) + '</h5>\n' +
                     '        </div>\n' +
                     '    </div>\n' +
@@ -417,8 +417,8 @@ $(function () {
                         var codigo_aerolinea_vuelta = pareja.vuelta.aerolinea;
                         var codigo_ida = pareja.ida.codigo;
                         var codigo_vuelta = pareja.vuelta.codigo;
-                        var aeropuerto_origen = pareja.ida.origen;
-                        var aeropuerto_vuelta = pareja.vuelta.origen;
+                        var aeropuerto_origen = pareja.ida.origen.codigo;
+                        var aeropuerto_vuelta = pareja.vuelta.origen.codigo;
                         var duracion_ida = formatear_duracion(pareja.ida.duracion);
                         var duracion_vuelta = formatear_duracion(pareja.vuelta.duracion);
                         var hora_salida_ida = formatear_hora(pareja.ida.salida);
@@ -435,12 +435,12 @@ $(function () {
                                 "            <div class=\"pareja\">\n" +
                                 "                <div class=\"vuelo\">\n" +
                                 "                    <div class=\"aerolinea-codigo-vuelo\">\n" +
-                                "                        <img class=\"aerolinea\" id=\"" + codigo_aerolinea_ida + "\" src=\"/images/" + codigo_aerolinea_ida + ".png\" title=\"Ver detalles de aerolinea\" height=\"30px\">\n" +
+                                "                        <img class=\"aerolinea logo-aerolinea-vuelo\" id=\"" + codigo_aerolinea_ida + "\" src=\"/images/" + codigo_aerolinea_ida + ".png\" title=\"Ver detalles de aerolinea\">\n" +
                                 "                        <div class=\"texto-codigo-vuelo\">" + codigo_ida + "</div>\n" +
                                 "                    </div>\n" +
                                 "                    <div class=\"duracion-icono\">\n" +
                                 "                        <div class=\"texto-duracion\">" + duracion_ida + "</div>\n" +
-                                "                        <img src=\"/images/icono-viaje.png\" height=\"45px\">\n" +
+                                "                        <img src=\"/images/icono-viaje.png\" class='icono-viaje'>\n" +
                                 "                    </div>\n" +
                                 "                    <div class=\"detalles-vuelo\">\n" +
                                 "                        <div class=\"grupo-horas-ubicaciones\">\n" +
@@ -449,9 +449,9 @@ $(function () {
                                 "                                <div class=\"texto-hora\">" + hora_llegada_ida + "</div>\n" +
                                 "                            </div>\n" +
                                 "                            <div class=\"ubicaciones\">\n" +
-                                "                                <div>\n" + aeropuerto_origen +
+                                "                                <div class='texto-vuelo'>\n" + aeropuerto_origen +
                                 "                                </div>\n" +
-                                "                                <div>\n" + aeropuerto_vuelta +
+                                "                                <div class='texto-vuelo'>\n" + aeropuerto_vuelta +
                                 "                                </div>\n" +
                                 "                            </div>\n" +
                                 "                        </div>\n" +
@@ -459,12 +459,12 @@ $(function () {
                                 "                </div>\n" +
                                 "                <div class=\"vuelo\">\n" +
                                 "                    <div class=\"aerolinea-codigo-vuelo\">\n" +
-                                "                        <img class=\"aerolinea\" id=\"" + codigo_aerolinea_vuelta + "\" src=\"/images/" + codigo_aerolinea_vuelta + ".png\" title=\"Ver detalles de aerolinea\" height=\"30px\">\n" +
+                                "                        <img class=\"aerolinea logo-aerolinea-vuelo\" id=\"" + codigo_aerolinea_vuelta + "\" src=\"/images/" + codigo_aerolinea_vuelta + ".png\" title=\"Ver detalles de aerolinea\">\n" +
                                 "                        <div class=\"texto-codigo-vuelo\">" + codigo_vuelta + "</div>\n" +
                                 "                    </div>\n" +
                                 "                    <div class=\"duracion-icono\">\n" +
                                 "                        <div class=\"texto-duracion\">" + duracion_vuelta + "</div>\n" +
-                                "                        <img src=\"/images/icono-viaje.png\" height=\"45px\">\n" +
+                                "                        <img src=\"/images/icono-viaje.png\" class='icono-viaje'>\n" +
                                 "                    </div>\n" +
                                 "                    <div class=\"detalles-vuelo\">\n" +
                                 "                        <div class=\"grupo-horas-ubicaciones\">\n" +
@@ -473,9 +473,9 @@ $(function () {
                                 "                                <div class=\"texto-hora\">" + hora_llegada_vuelta + "</div>\n" +
                                 "                            </div>\n" +
                                 "                            <div class=\"ubicaciones\">\n" +
-                                "                                <div>\n" + aeropuerto_vuelta +
+                                "                                <div class='texto-vuelo'>\n" + aeropuerto_vuelta +
                                 "                                </div>\n" +
-                                "                                <div>\n" + aeropuerto_origen +
+                                "                                <div class='texto-vuelo'>\n" + aeropuerto_origen +
                                 "                                </div>\n" +
                                 "                            </div>\n" +
                                 "                        </div>\n" +

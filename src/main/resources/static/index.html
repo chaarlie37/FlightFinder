@@ -69,7 +69,7 @@
 <!-- Zona donde se muestra la lista de vuelos, avisos de errores y el botón para volver a hacer otra búsqueda. -->
 <div class="contenido">
     <div class="zona-boton-vuelos">
-        <span>Estos son los vuelos disponibles:</span>
+        <span class="texto-zona-boton-vuelos">Estos son los vuelos disponibles:</span>
         <div class="btn btn-secondary" id="btn-volver">
             Volver a buscar
             <span class="material-icons">arrow_upward</span>
@@ -83,12 +83,12 @@
         <div class="pareja">
             <div class="vuelo">
                 <div class="aerolinea-codigo-vuelo">
-                    <img src="/images/IB.png" height="50px" class="logo-aerolinea-vuelo">
+                    <img src="/images/IB.png" class="logo-aerolinea-vuelo">
                     <div class="texto-codigo-vuelo">IB0001</div>
                 </div>
                 <div class="duracion-icono">
                     <div class="texto-duracion">2h</div>
-                    <img src="/images/icono-viaje.png" class="icono-viaje" height="70%">
+                    <img src="/images/icono-viaje.png" class="icono-viaje">
                 </div>
                 <div class="detalles-vuelo">
                     <div class="grupo-horas-ubicaciones">
@@ -109,12 +109,12 @@
             </div>
             <div class="vuelo">
                 <div class="aerolinea-codigo-vuelo">
-                    <img src="/images/IB.png" height="50px" class="logo-aerolinea-vuelo">
+                    <img src="/images/IB.png" class="logo-aerolinea-vuelo">
                     <span class="texto-codigo-vuelo">IB0002</span>
                 </div>
                 <div class="duracion-icono">
-                    <div class="texto-duracion">2h 5min</div>
-                    <img src="/images/icono-viaje.png" class="icono-viaje" height="70%">
+                    <div class="texto-duracion">2h 55min</div>
+                    <img src="/images/icono-viaje.png" class="icono-viaje">
                 </div>
                 <div class="detalles-vuelo">
                     <div class="grupo-horas-ubicaciones">
@@ -134,7 +134,11 @@
                 </div>
             </div>
         </div>
-        <h3 class="precio h3">180€</h3>
+        <div class="precio">
+            <div class="texto-precio" id="texto-precio">Precio total: </div>
+            <h3 class="h3">180€</h3>
+        </div>
+
     </div>
 
     <!-- En este div se añade el contenido de los dialog de JQuery, para mostrar la información de las compaías aéreas / aerolíneas -->

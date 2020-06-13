@@ -8,4 +8,5 @@ import java.util.List;
 public interface AeropuertoRepository extends JpaRepository<Aeropuerto, Integer> {
     // Devolver todos los aeropuertos
     List<Aeropuerto> findAll();
+    Aeropuerto findByNombre(String nombre);
 }

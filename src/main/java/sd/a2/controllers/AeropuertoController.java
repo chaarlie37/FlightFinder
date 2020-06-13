@@ -27,22 +27,7 @@ public class AeropuertoController {
     @PostConstruct
     // Metodo para introducir vuelos en la base de datos
     public void init(){
-        Aeropuerto madrid = new Aeropuerto("LEMD", "Madrid (Adolfo Suárez - Madrid Barajas)");
-        Aeropuerto roma1 = new Aeropuerto("LIRF", "Roma (Fiumicino)");
-        Aeropuerto roma2 = new Aeropuerto("LIRA", "Roma (Ciampino)");
-        Aeropuerto palma = new Aeropuerto("LEPA", "Palma de Mallorca");
-        Aeropuerto berlin = new Aeropuerto("EDDB", "Berlin (Schönefeld)");
-        Aeropuerto ny = new Aeropuerto("KJFK", "Nueva York (John F. Kennedy)");
-        Aeropuerto bcn = new Aeropuerto("LEBL", "Barcelona (El Prat)");
-        Aeropuerto paris = new Aeropuerto("LFPO", "París (Orly)");
-        aeropuertoRepository.save(madrid);
-        aeropuertoRepository.save(roma1);
-        aeropuertoRepository.save(roma2);
-        aeropuertoRepository.save(palma);
-        aeropuertoRepository.save(berlin);
-        aeropuertoRepository.save(ny);
-        aeropuertoRepository.save(bcn);
-        aeropuertoRepository.save(paris);
+
     }
 
     // Devolver todos los aeropuertos
