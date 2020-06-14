@@ -37,13 +37,13 @@ public class VueloController {
     // Metodo para introducir vuelos en la base de datos
     public void init(){
         Aeropuerto madrid = new Aeropuerto("MAD", "Madrid Adolfo Suárez - Barajas");
-        Aeropuerto roma1 = new Aeropuerto("FIU", "Roma - Fiumicino");
-        Aeropuerto roma2 = new Aeropuerto("CIA", "Roma - Ciampino)");
+        Aeropuerto roma1 = new Aeropuerto("FIU", "Roma Fiumicino");
+        Aeropuerto roma2 = new Aeropuerto("CIA", "Roma Ciampino");
         Aeropuerto palma = new Aeropuerto("PMI", "Palma de Mallorca");
-        Aeropuerto berlin = new Aeropuerto("SXF", "Berlin - Schönefeld");
-        Aeropuerto ny = new Aeropuerto("JFK", "Nueva York - John F. Kennedy");
-        Aeropuerto bcn = new Aeropuerto("BCN", "Barcelona - El Prat)");
-        Aeropuerto paris = new Aeropuerto("ORY", "París - Orly");
+        Aeropuerto berlin = new Aeropuerto("SXF", "Berlin Schönefeld");
+        Aeropuerto ny = new Aeropuerto("JFK", "Nueva York John F. Kennedy");
+        Aeropuerto bcn = new Aeropuerto("BCN", "Barcelona");
+        Aeropuerto paris = new Aeropuerto("ORY", "París Orly");
         aeropuertoRepository.save(madrid);
         aeropuertoRepository.save(roma1);
         aeropuertoRepository.save(roma2);

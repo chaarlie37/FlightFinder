@@ -266,17 +266,21 @@ $(function () {
 
     // Al hacer click en el radiobutton de sólo ida, oculta el campo de fecha de vuelta ya que es innecesario.
     radio_soloida.on('click', function () {
-        fecha_vuelta.hide();
-        $('#destino.barra-busqueda').css({
-            "border-bottom-right-radius": "0.50rem"
+        fecha_vuelta.css({
+            "background-color": "#c7c7c7",
+            "cursor" : "not-allowed"
         });
+        fecha_vuelta.prop('disabled', true);
+        fecha_vuelta.val('Sólo ida')
     });
     // Deshace el cambio anterior en caso de volver a hacer click en el radiobutton de ida y vuelta.
     radio_idavuelta.on('click', function () {
-        fecha_vuelta.show();
-        $('#destino.barra-busqueda').css({
-            "border-bottom-right-radius": "0"
+        fecha_vuelta.prop('disabled', false);
+        fecha_vuelta.css({
+            "background-color": "#fff",
+            "cursor" : "pointer"
         });
+        fecha_vuelta.val('');
     })
 
     // Al hacer click en el logotipo de la aerolínea en cada vuelo abre el dialog correspondiente.
@@ -483,7 +487,8 @@ $(function () {
                                 "                </div>\n" +
                                 "            </div>\n" +
                                 "            <div class=\"precio\">\n" +
-                                "                <h3 class=\"precio-sin-descuento\">" + precio_sin_descuento + "</h3>\n" +
+                                "                <div class=\"texto-precio\" id=\"texto-precio\">Precio total: </div>\n" +
+                                "                <h3 class=\"texto-precio precio-sin-descuento\">" + precio_sin_descuento + "</h3>\n" +
                                 "                <h4 class=\"h3\">" + precio + "€</h4>\n" +
                                 "            </div>" +
                                 "        </div>");

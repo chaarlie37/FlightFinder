@@ -26,7 +26,7 @@
 <!-- Div del banner de búsqueda. -->
 <div class="zona-busqueda">
     <img src="images/logo.png" class="logo">
-    <h1 class="h3">¿A dónde quieres ir?</h1>
+    <h1 class="texto-blanco-movil h3">¿A dónde quieres ir?</h1>
         <form>
             <!-- Barras de búsqueda -->
             <div class="input-group">
@@ -50,10 +50,10 @@
             <!-- Radio buttons y botón de buscar -->
             <div class="radio-y-boton-busqueda">
                 <div>
-                    <label for="ida-vuelta">Ida y vuelta</label>
-                    <input class="radio" type="radio" name="idavuelta" id="ida-vuelta" checked="checked">
+                    <label class="texto-blanco-movil" for="ida-vuelta">Ida y vuelta</label>
+                    <input class="texto-blanco-movil radio" type="radio" name="idavuelta" id="ida-vuelta" checked="checked">
                     <label for="solo-ida">Sólo ida</label>
-                    <input class="radio" type="radio" name="idavuelta" id="solo-ida">
+                    <input class="texto-blanco-movil radio" type="radio" name="idavuelta" id="solo-ida">
                 </div>
                 <div class="btn btn-primary" id="btn-enviar">
                     Buscar
@@ -79,67 +79,6 @@
     <div id="lista">
     </div>
 
-    <div class="zona-vuelo">
-        <div class="pareja">
-            <div class="vuelo">
-                <div class="aerolinea-codigo-vuelo">
-                    <img src="/images/IB.png" class="logo-aerolinea-vuelo">
-                    <div class="texto-codigo-vuelo">IB0001</div>
-                </div>
-                <div class="duracion-icono">
-                    <div class="texto-duracion">2h</div>
-                    <img src="/images/icono-viaje.png" class="icono-viaje">
-                </div>
-                <div class="detalles-vuelo">
-                    <div class="grupo-horas-ubicaciones">
-                        <div class="horas">
-                            <div class="texto-hora">17:05</div>
-                            <div class="texto-hora">23:05</div>
-                        </div>
-                        <div class="ubicaciones">
-                            <div class="texto-vuelo">
-                                Madrid (Adolfo Suárez - Madrid Barajas)
-                            </div>
-                            <div class="texto-vuelo">
-                                Berlin (Schönefeld)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="vuelo">
-                <div class="aerolinea-codigo-vuelo">
-                    <img src="/images/IB.png" class="logo-aerolinea-vuelo">
-                    <span class="texto-codigo-vuelo">IB0002</span>
-                </div>
-                <div class="duracion-icono">
-                    <div class="texto-duracion">2h 55min</div>
-                    <img src="/images/icono-viaje.png" class="icono-viaje">
-                </div>
-                <div class="detalles-vuelo">
-                    <div class="grupo-horas-ubicaciones">
-                        <div class="horas">
-                            <div class="texto-hora">17:05</div>
-                            <div class="texto-hora">23:05</div>
-                        </div>
-                        <div class="ubicaciones">
-                            <div class="texto-vuelo">
-                                Berlin (Schönefeld)
-                            </div>
-                            <div class="texto-vuelo">
-                                Madrid (Adolfo Suárez - Madrid Barajas)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="precio">
-            <div class="texto-precio" id="texto-precio">Precio total: </div>
-            <h3 class="h3">180€</h3>
-        </div>
-
-    </div>
 
     <!-- En este div se añade el contenido de los dialog de JQuery, para mostrar la información de las compaías aéreas / aerolíneas -->
     <div id="dialog"></div>
