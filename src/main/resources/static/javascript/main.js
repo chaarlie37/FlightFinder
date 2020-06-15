@@ -17,6 +17,8 @@ $(function () {
     var vuelos_vuelta = [];
     var parejas_vuelos = [];
     var aeropuertos = [];
+    var loader = $('.loader');
+    loader.hide();
 
     // Datepickers de JQuery. Hemos considerado que son más estéticos y más cómodos que los que vienen en cada navegador.
     // Están adaptados al español y a nuestro formato de fecha.
@@ -126,6 +128,7 @@ $(function () {
                     // Al ser asíncronas y no ser seguro recibir la ida antes que la vuelta, debemos guardar los elementos
                     // a través de una función auxiliar.
                     // Una vez se hayan guardado en arrays los vuelos correspondientes, se invocará a otra función para que los muestre.
+                    loader.fadeIn();
                     $.getJSON(url_ida, function (respuesta) {
                         var lista = [];
                         $.each(respuesta, function (i, item) {
@@ -153,17 +156,14 @@ $(function () {
                 }else {
                     // Consultas al servidor web de los vuelos de ida. En este caso sí podemos mostrar los vuelos en cuanto
                     // se recibe la información ya que no esperamos más datos.
-                    $.getJSON(url_ida, function (respuesta) {
-                        contenido.fadeOut().promise().done(function () {
-                            $('html, body').animate({
-                                scrollTop: cabecera_vuelos.offset().top
-                            }, 1000);
+                    loader.fadeIn();
+                    contenido.fadeOut().promise().done(function () {
+
+                        $.getJSON(url_ida, function (respuesta) {
                             lista.empty();
                             cabecera_vuelos.empty();
                             // Pequeño mensaje y botón para volver a buscar. Por defecto está escondido en el HTML pero
                             // aquí hacemos que se muestre.
-                            zona_boton_vuelos.css("display", "flex");
-                            zona_boton_vuelos.fadeIn();
                             // Si la respuesta es vacía, es decir, si no hay vuelos en función de los datos introducidos,
                             // informar al usuario de que no hay vuelos registrados.
                             if (respuesta == "") {
@@ -244,7 +244,14 @@ $(function () {
                                 });
                             }
                             // El contenido se muestra una vez cargado
-                            contenido.fadeIn();
+                            loader.fadeOut().promise().done(function () {
+                                zona_boton_vuelos.css("display", "flex");
+                                zona_boton_vuelos.fadeIn();
+                                $('html, body').animate({
+                                    scrollTop: cabecera_vuelos.offset().top
+                                }, 1000);
+                                contenido.fadeIn();
+                            });
                         });
                     });
                 }
@@ -318,8 +325,8 @@ $(function () {
         vuelosIdaCargados = true;
         if (vuelos_vuelta.length > 0){
             mostrar_parejas_vuelos(vuelos_ida, vuelos_vuelta);
-            vuelos_ida = []
-            vuelos_vuelta = []
+            vuelos_ida = [];
+            vuelos_vuelta = [];
         }
         else if(vuelosIdaCargados && vuelosVueltaCargados && vuelos_ida.length === 0 && vuelos_vuelta.length === 0){
             contenido.fadeOut().promise().done(function () {
@@ -373,9 +380,6 @@ $(function () {
     // Se comentan los aspectos diferentes.
     function mostrar_parejas_vuelos(vuelos_ida, vuelos_vuelta) {
         contenido.fadeOut().promise().done(function () {
-            $('html, body').animate({
-                scrollTop: cabecera_vuelos.offset().top
-            },1000);
             lista.empty();
             cabecera_vuelos.empty();
             if (vuelos_ida.length === 0 || vuelos_vuelta.length === 0){
@@ -400,8 +404,6 @@ $(function () {
                     '        </div>\n' +
                     '    </div>\n' +
                     '</div>');
-                zona_boton_vuelos.css("display", "flex");
-                zona_boton_vuelos.fadeIn();
                 // Se iteran todos los vuelos de ida y todos los vuelos de vuelta recibidos. Se crea una pareja de vuelos
                 // por combinación que exista.
                 for (var i = 0; i<vuelos_ida.length; i++){
@@ -501,7 +503,14 @@ $(function () {
                     $('.contenido').css("padding-bottom", "28%");
                 }
             }
-            contenido.fadeIn();
+            loader.fadeOut().promise().done(function () {
+                zona_boton_vuelos.css("display", "flex");
+                zona_boton_vuelos.fadeIn();
+                $('html, body').animate({
+                    scrollTop: cabecera_vuelos.offset().top
+                }, 1000);
+                contenido.fadeIn();
+            });
             // Vaciar los arrays de esta búsqueda
         });
     }
@@ -627,6 +636,15 @@ $(function () {
             return Math.trunc(min / 60) + "h";
         }else{
             return min + "min";
+        }
+    }
+
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
         }
     }
 

@@ -82,22 +82,31 @@ public class VueloController {
         // Formato de la fecha y hora para crear los vuelos con fechas a partir de un string
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         try{
-            for (int i = 1; i<=12; i++){
+
+            for (int i = 6; i<=12; i++){
                 for (int j = 1; j<=31; j++){
-                    for (int k = 0; k<50; k++){
-                        for (String a:
-                                aerolineas) {
-                            System.out.println("Generando vuelo..." + (k * j * i) / 12 * 30 * 100);
-                            Aeropuerto a1 = aeropuertos.get((int) (Math.random() * (aeropuertos.size() - 1)));
-                            Aeropuerto a2 = aeropuertos.get((int) (Math.random() * (aeropuertos.size() - 1)));
-                            Vuelo v = new Vuelo(a + String.format("%04d",((int) (Math.random() * 9999))), simpleDateFormat.parse(String.format("%02d",j) + "-" + String.format("%02d",i) + "-2020 " + String.format("%02d", (int) (Math.random() * 23))  + ":" + String.format("%02d", (int) (Math.random() * 59))), (int) (Math.random() * 300), (int) (Math.random() * 500), a,
-                                    a1, a2);
-                            System.out.println(v);
-                            vueloRepository.save(v);
+                    for (Aeropuerto a:
+                            aeropuertos) {
+                        for (Aeropuerto a2:
+                             aeropuertos) {
+                            for (int k = 0; k<5; k++){
+                                System.out.println("Generando vuelo..." + ((k * j * i) * 100 / (12 * 30 * 100)));
+                                String aerolinea = aerolineas.get((int) (Math.random() * (aerolineas.size())));
+                                // Aeropuerto a2 = aeropuertos.get((int) (Math.random() * (aeropuertos.size())));
+                                Vuelo v = new Vuelo(aerolinea + String.format("%04d",((int) (Math.random() * 9999))), simpleDateFormat.parse(String.format("%02d",j) + "-" + String.format("%02d",i) + "-2020 " + String.format("%02d", (int) (Math.random() * 23))  + ":" + String.format("%02d", (int) (Math.random() * 59))), (int) (Math.random() * 300), (int) (Math.random() * 500), aerolinea,
+                                        a, a2);
+                                System.out.println(v);
+                                vueloRepository.save(v);
+                            }
                         }
+
                     }
                 }
             }
+
+ 
+
+
 
             Vuelo v1 = new Vuelo("IB0001", simpleDateFormat.parse("31-05-2020 12:15"), 120, 150, "IB", madrid, berlin);
             Vuelo v2 = new Vuelo("IB0002", simpleDateFormat.parse("31-05-2020 07:35"), 90, 120, "IB", madrid, roma1);
