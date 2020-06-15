@@ -228,9 +228,9 @@ $(function () {
                                         "                                <div class=\"texto-hora\">" + hora_llegada + "</div>\n" +
                                         "                            </div>\n" +
                                         "                            <div class=\"ubicaciones\">\n" +
-                                        "                                <div>\n" + aeropuerto_origen +
+                                        "                                <div class='texto-vuelo'>\n" + aeropuerto_origen +
                                         "                                </div>\n" +
-                                        "                                <div>\n" + aeropuerto_destino +
+                                        "                                <div class='texto-vuelo'>\n" + aeropuerto_destino +
                                         "                                </div>\n" +
                                         "                            </div>\n" +
                                         "                        </div>\n" +
@@ -413,7 +413,7 @@ $(function () {
                         var precio_sin_descuento = "";
                         if (vuelos_ida[i].aerolinea === vuelos_vuelta[j].aerolinea) {
                             precio_sin_descuento = precio + "€";
-                            precio = precio * 0.80;
+                            precio = Math.round(precio * 0.80 * 100) / 100;
                         }
                         var pareja = new ParejaVuelos(vuelos_ida[i], vuelos_vuelta[j], precio);
                         parejas_vuelos.push(pareja);

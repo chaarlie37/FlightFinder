@@ -108,4 +108,18 @@ public class Vuelo{
     public void setLlegada(Date llegada) {
         this.llegada = llegada;
     }
+
+    @Override
+    public String toString() {
+        return "Vuelo{" +
+                "codigo='" + codigo + '\'' +
+                ", salida=" + salida +
+                ", llegada=" + llegada +
+                ", duracion=" + duracion +
+                ", precio=" + precio +
+                ", aerolinea='" + aerolinea + '\'' +
+                ", origen=" + origen +
+                ", destino=" + destino +
+                '}';
+    }
 }

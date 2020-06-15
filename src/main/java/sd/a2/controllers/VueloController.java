@@ -5,15 +5,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import sd.a2.model.Aerolinea;
 import sd.a2.model.Aeropuerto;
 import sd.a2.model.Vuelo;
+import sd.a2.repositories.AerolineaRepository;
 import sd.a2.repositories.AeropuertoRepository;
 import sd.a2.repositories.VueloRepository;
 import sd.a2.services.VuelosService;
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 // Controller para gestionar el servicio web y devolver datos sobre las aerolineas
@@ -30,12 +34,27 @@ public class VueloController {
     private AeropuertoRepository aeropuertoRepository;
 
     @Autowired
+    // Repositorio de aeropuertos. Se declara aqui solo para inicializarlo con init()
+    private AerolineaRepository aerolineaRepository;
+
+    @Autowired
     // Repositorio de vuelos. Se declara aqui solo para inicializarlo con init()
     private VueloRepository vueloRepository;
+
+
 
     @PostConstruct
     // Metodo para introducir vuelos en la base de datos
     public void init(){
+
+        ArrayList<Aeropuerto> aeropuertos = new ArrayList<>();
+        ArrayList<String> aerolineas = new ArrayList<>();
+
+        for (Aerolinea a:
+             aerolineaRepository.findAll()) {
+            aerolineas.add(a.getCodigo());
+        }
+
         Aeropuerto madrid = new Aeropuerto("MAD", "Madrid Adolfo Suárez - Barajas");
         Aeropuerto roma1 = new Aeropuerto("FIU", "Roma Fiumicino");
         Aeropuerto roma2 = new Aeropuerto("CIA", "Roma Ciampino");
@@ -44,6 +63,14 @@ public class VueloController {
         Aeropuerto ny = new Aeropuerto("JFK", "Nueva York John F. Kennedy");
         Aeropuerto bcn = new Aeropuerto("BCN", "Barcelona");
         Aeropuerto paris = new Aeropuerto("ORY", "París Orly");
+        aeropuertos.add(madrid);
+        aeropuertos.add(roma1);
+        aeropuertos.add(roma2);
+        aeropuertos.add(palma);
+        aeropuertos.add(berlin);
+        aeropuertos.add(ny);
+        aeropuertos.add(bcn);
+        aeropuertos.add(paris);
         aeropuertoRepository.save(madrid);
         aeropuertoRepository.save(roma1);
         aeropuertoRepository.save(roma2);
@@ -55,6 +82,23 @@ public class VueloController {
         // Formato de la fecha y hora para crear los vuelos con fechas a partir de un string
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         try{
+            for (int i = 1; i<=12; i++){
+                for (int j = 1; j<=31; j++){
+                    for (int k = 0; k<50; k++){
+                        for (String a:
+                                aerolineas) {
+                            System.out.println("Generando vuelo..." + (k * j * i) / 12 * 30 * 100);
+                            Aeropuerto a1 = aeropuertos.get((int) (Math.random() * (aeropuertos.size() - 1)));
+                            Aeropuerto a2 = aeropuertos.get((int) (Math.random() * (aeropuertos.size() - 1)));
+                            Vuelo v = new Vuelo(a + String.format("%04d",((int) (Math.random() * 9999))), simpleDateFormat.parse(String.format("%02d",j) + "-" + String.format("%02d",i) + "-2020 " + String.format("%02d", (int) (Math.random() * 23))  + ":" + String.format("%02d", (int) (Math.random() * 59))), (int) (Math.random() * 300), (int) (Math.random() * 500), a,
+                                    a1, a2);
+                            System.out.println(v);
+                            vueloRepository.save(v);
+                        }
+                    }
+                }
+            }
+
             Vuelo v1 = new Vuelo("IB0001", simpleDateFormat.parse("31-05-2020 12:15"), 120, 150, "IB", madrid, berlin);
             Vuelo v2 = new Vuelo("IB0002", simpleDateFormat.parse("31-05-2020 07:35"), 90, 120, "IB", madrid, roma1);
             Vuelo v3 = new Vuelo("FR0001", simpleDateFormat.parse("02-06-2020 09:30"), 95, 50, "FR", roma1, madrid);
